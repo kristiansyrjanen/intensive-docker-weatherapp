@@ -114,37 +114,37 @@ Works like a charm! Next...
 
 Install kubernetes,
 
-        curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-        sudo touch /etc/apt/sources.list.d/kubernetes.list
-        echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
-        sudo apt-get update
-        sudo apt-get install -y kubectl socat
+    curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+    sudo touch /etc/apt/sources.list.d/kubernetes.list
+    echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
+    sudo apt-get update
+    sudo apt-get install -y kubectl socat
 
 Start minikube
 
-        sudo minikube start --vm-driver=none
+    sudo minikube start --vm-driver=none
         
 Access dashboard
 
-        sudo minikube dashboard
+    sudo minikube dashboard
 
 ctrl+c when you see https://....
 
-        nohup kubectl port-forward  -n kubernetes-dashboard service/kubernetes-dashboard --address 0.0.0.0 9000:80 > dashboard.log &
+    nohup kubectl port-forward  -n kubernetes-dashboard service/kubernetes-dashboard --address 0.0.0.0 9000:80 > dashboard.log &
 
 ### DEPLOYMENT
 
 Time for the finale, to deploy on Minikube
 
-        ## BACKEND
-        kubectl run weatherapp-backend --image=backend:latest --image-pull-policy=Never
-        kubectl expose deployment weatherapp-backend --type=NodePort --port 8888
-        nohup kubectl port-forward service/weatherapp-backend --address 0.0.0.0 8888:8888 > backend.log &
+    ## BACKEND
+    kubectl run weatherapp-backend --image=backend:latest --image-pull-policy=Never
+    kubectl expose deployment weatherapp-backend --type=NodePort --port 8888
+    nohup kubectl port-forward service/weatherapp-backend --address 0.0.0.0 8888:8888 > backend.log &
 
-        ##FRONTEND
-        kubectl run weatherapp-frontend --image=frontend:latest --image-pull-policy=Never
-        kubectl expose deployment weatherapp-frontend --type=NodePort --port 8000
-        nohup kubectl port-forward service/weatherapp-frontend --address 0.0.0.0 8000:8000 > frontend.log &
+    ##FRONTEND
+    kubectl run weatherapp-frontend --image=frontend:latest --image-pull-policy=Never
+    kubectl expose deployment weatherapp-frontend --type=NodePort --port 8000
+    nohup kubectl port-forward service/weatherapp-frontend --address 0.0.0.0 8000:8000 > frontend.log &
 
 ![Alt text](https://i.imgur.com/9vOjYfl.gif)
 
