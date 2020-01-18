@@ -1,7 +1,9 @@
 version: '3'
 
 services:
-
+#######################################
+#   Front-End Configuration
+#######################################
   front_end:
     build:
       context: ./frontend/
@@ -9,7 +11,10 @@ services:
       - "8000:8000"
     expose:
       - "8000"
-
+      
+#######################################
+#   Back-End Configuration
+#######################################
   back_end:
     build:
       context: ./backend/
