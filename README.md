@@ -146,6 +146,6 @@ Time for the finale, to deploy on Minikube
         kubectl expose deployment weatherapp-frontend --type=NodePort --port 8000
         nohup kubectl port-forward service/weatherapp-frontend --address 0.0.0.0 8000:8000 > frontend.log &
 
-! [Alt text](https://i.imgur.com/9vOjYfl.gif)
+![Alt text](https://i.imgur.com/9vOjYfl.gif)
 
 So that's it.
